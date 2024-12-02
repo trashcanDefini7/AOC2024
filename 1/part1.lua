@@ -1,18 +1,17 @@
-local file = io.open('input.txt', 'r')
 local left = {}
 local right = {}
 
-function parseLine(line)
+local function parseLine(line)
     local result = {}
 
-    for word in line:gmatch("%S+") do
+    for word in line:gmatch('%S+') do
         result[#result+1] = word
     end
 
     return tonumber(result[1]), tonumber(result[2])
 end
 
-for line in file.lines(file) do
+for line in io.lines('input.txt') do
     local lhs, rhs = parseLine(line)
     left[#left + 1] = lhs
     right[#right + 1] = rhs

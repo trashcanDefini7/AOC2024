@@ -1,8 +1,7 @@
-local file = io.open('input.txt', 'r')
 local left = {}
 local right = {}
 
-function parseLine(line)
+local function parseLine(line)
     local result = {}
 
     for word in line:gmatch("%S+") do
@@ -12,7 +11,7 @@ function parseLine(line)
     return tonumber(result[1]), tonumber(result[2])
 end
 
-for line in file.lines(file) do
+for line in io.lines('input.txt') do
     local lhs, rhs = parseLine(line)
     left[#left + 1] = lhs
     right[#right + 1] = rhs
@@ -21,7 +20,7 @@ end
 table.sort(left)
 table.sort(right)
 
-function count_occurences(array)
+local function countOccurences(array)
     local counts = {}
 
     for _, v in ipairs(array) do
@@ -35,8 +34,8 @@ function count_occurences(array)
     return counts
 end
 
-local left_counts = count_occurences(left)
-local right_counts = count_occurences(right)
+local left_counts = countOccurences(left)
+local right_counts = countOccurences(right)
 
 local sum = 0
 
